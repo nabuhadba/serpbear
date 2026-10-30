@@ -20,7 +20,7 @@
     "@googleapis/searchconsole": "^1.0.5",
     "@isaacs/ttlcache": "^1.4.1",
     "@types/react-transition-group": "^4.4.12",
-    "axios": "^1.13.5",
+    "axios": "^1.21.0",
     "axios-retry": "^3.3.1",
     "chart.js": "^3.9.1",
     "cheerio": "^1.2.0",
