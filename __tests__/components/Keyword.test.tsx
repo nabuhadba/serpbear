@@ -7,6 +7,7 @@ const keywordProps = {
    selected: false,
    index: 0,
    showSCData: false,
+   maxTitleColumnWidth: 235,
    scDataType: '',
    style: {},
    refreshkeyword: jest.fn(),

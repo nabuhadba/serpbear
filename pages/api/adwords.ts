@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { OAuth2Client } from 'google-auth-library';
 import { readFile, writeFile } from 'fs/promises';
 import Cryptr from 'cryptr';
-import getConfig from 'next/config';
+import getAppURL from '../../utils/appURL';
 import db from '../../database/database';
 import verifyUser from '../../utils/verifyUser';
 import { getAdwordsCredentials, getAdwordsKeywordIdeas } from '../../utils/adwords';
@@ -38,9 +38,8 @@ const getAdwordsRefreshToken = async (req: NextApiRequest, res: NextApiResponse<
       const code = (req.query.code as string);
       // Build redirect URL using NEXT_PUBLIC_APP_URL (most reliable behind reverse proxies),
       // falling back to X-Forwarded-* headers, then req.headers.host.
-      // Read from serverRuntimeConfig to prevent Next.js from inlining the env var at build time.
-      const { serverRuntimeConfig } = getConfig() || {};
-      const appURL: string = serverRuntimeConfig?.appURL || '';
+      // Read at runtime (see utils/appURL) to prevent Next.js from inlining the env var at build time.
+      const appURL: string = getAppURL();
       let redirectURL = '';
       if (appURL) {
          redirectURL = `${appURL.replace(/\/$/, '')}/api/adwords`;
